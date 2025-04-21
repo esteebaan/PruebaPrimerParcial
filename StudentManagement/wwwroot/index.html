@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión Escolar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><i class="fas fa-graduation-cap"></i> Sistema de Gestión FISEI</h1>
+            <nav>
+                <button onclick="showSection('students')"><i class="fas fa-users"></i> Estudiantes</button>
+                <button onclick="showSection('courses')"><i class="fas fa-book"></i> Cursos</button>
+                <button onclick="showSection('teachers')"><i class="fas fa-chalkboard-teacher"></i> Docentes</button>
+                <button onclick="showSection('enrollments')"><i class="fas fa-clipboard-list"></i> Inscripciones</button>
+                <button onclick="showSection('grades')"><i class="fas fa-star"></i> Notas</button>
+                <button onclick="showSection('reports')"><i class="fas fa-chart-line"></i> Informes</button>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section id="students" class="section">
+            <div class="card">
+                <h2><i class="fas fa-users"></i> Gestión de Estudiantes</h2>
+                <form id="studentForm">
+                    <input type="hidden" id="studentId">
+                    <div class="form-group">
+                        <label>ID (10 dígitos): <input type="text" id="studentStudentId" maxlength="10" pattern="\d{10}" required></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Primer Nombre: <input type="text" id="studentFirstName" required></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo Nombre: <input type="text" id="studentMiddleName"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Primer Apellido: <input type="text" id="studentLastName" required></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo Apellido: <input type="text" id="studentSecondLastName"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Email: <input type="email" id="studentEmail" required></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha de Nacimiento: <input type="date" id="studentDateOfBirth" required></label>
+                    </div>
+                    <button type="submit"><i class="fas fa-save"></i> Guardar</button>
+                </form>
+                <div class="table-container">
+                    <table id="studentTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Email</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <section id="courses" class="section" style="display:none;">
+            <div class="card">
+                <h2><i class="fas fa-book"></i> Gestión de Cursos</h2>
+                <form id="courseForm">
+                    <input type="hidden" id="courseId">
+                    <div class="form-group">
+                        <label>Nombre: <input type="text" id="courseName" required></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Créditos: <input type="number" id="courseCredits" min="1" required></label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            ID Docente (10 dígitos):
+                            <input type="text" id="courseTeacherId" maxlength="10" pattern="\d{10}" list="teacherSuggestions" required>
+                            <datalist id="teacherSuggestions"></datalist>
+                        </label>
+                    </div>
+                    <button type="submit"><i class="fas fa-save"></i> Guardar</button>
+                </form>
+                <div class="table-container">
+                    <table id="courseTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Créditos</th>
+                                <th>ID Docente</th>
+                                <th>Docente</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <section id="teachers" class="section" style="display:none;">
+            <div class="card">
+                <h2><i class="fas fa-chalkboard-teacher"></i> Gestión de Docentes</h2>
+                <form id="teacherForm">
+                    <input type="hidden" id="teacherId">
+                    <div class="form-group">
+                        <label>ID (10 dígitos): <input type="text" id="teacherTeacherId" maxlength="10" pattern="\d{10}" required></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Primer Nombre: <input type="text" id="teacherFirstName" required></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo Nombre: <input type="text" id="teacherMiddleName"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Primer Apellido: <input type="text" id="teacherLastName" required></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo Apellido: <input type="text" id="teacherSecondLastName"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Email: <input type="email" id="teacherEmail" required></label>
+                    </div>
+                    <button type="submit"><i class="fas fa-save"></i> Guardar</button>
+                </form>
+                <div class="table-container">
+                    <table id="teacherTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Email</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <section id="enrollments" class="section" style="display:none;">
+            <div class="card">
+                <h2><i class="fas fa-clipboard-list"></i> Gestión de Inscripciones</h2>
+                <form id="enrollmentForm">
+                    <input type="hidden" id="enrollmentId">
+                    <div class="form-group">
+                        <label>
+                            ID Estudiante (10 dígitos):
+                            <input type="text" id="enrollmentStudentId" maxlength="10" pattern="\d{10}" list="studentSuggestions" required>
+                            <datalist id="studentSuggestions"></datalist>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Curso: <select id="enrollmentCourseId" required></select></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha: <input type="date" id="enrollmentDate" required></label>
+                    </div>
+                    <button type="submit"><i class="fas fa-save"></i> Guardar</button>
+                </form>
+                <div class="table-container">
+                    <table id="enrollmentTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>ID Estudiante</th>
+                                <th>Estudiante</th>
+                                <th>Curso</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <section id="grades" class="section" style="display:none;">
+            <div class="card">
+                <h2><i class="fas fa-star"></i> Gestión de Notas</h2>
+                <form id="gradeForm">
+                    <input type="hidden" id="gradeId">
+                    <div class="form-group">
+                        <label>
+                            ID Estudiante (10 dígitos):
+                            <input type="text" id="gradeStudentId" maxlength="10" pattern="\d{10}" list="gradeStudentSuggestions" required>
+                            <datalist id="gradeStudentSuggestions"></datalist>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Inscripción: <select id="gradeEnrollmentId" required></select></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Nota 1er Período (0-10): <input type="number" id="gradeScore1" min="0" max="10" step="0.01" required></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Nota 2do Período (0-10): <input type="number" id="gradeScore2" min="0" max="10" step="0.01" required></label>
+                    </div>
+                    <button type="submit"><i class="fas fa-save"></i> Guardar</button>
+                </form>
+                <div class="table-container">
+                    <table id="gradeTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>ID Estudiante</th>
+                                <th>Estudiante</th>
+                                <th>Curso</th>
+                                <th>Nota 1er Período</th>
+                                <th>Nota 2do Período</th>
+                                <th>Promedio</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <section id="reports" class="section" style="display:none;">
+            <div class="card">
+                <h2><i class="fas fa-chart-line"></i> Informes de Notas</h2>
+                <div class="report-tabs">
+                    <button onclick="loadReport('students')" class="active">Por Estudiante</button>
+                    <button onclick="loadReport('courses')">Por Curso</button>
+                </div>
+                <div class="report-filters" id="reportFilters">
+                    <div id="studentFilter" style="display: block;">
+                        <label>
+                            Filtrar por ID Estudiante:
+                            <input type="text" id="filterStudentId" maxlength="10" pattern="\d{10}" list="filterStudentSuggestions" placeholder="Ingrese ID">
+                            <datalist id="filterStudentSuggestions"></datalist>
+                        </label>
+                        <button onclick="loadReport('students')">Filtrar</button>
+                    </div>
+                    <div id="courseFilter" style="display: none;">
+                        <label>
+                            Filtrar por Nombre de Curso:
+                            <input type="text" id="filterCourseName" placeholder="Ingrese nombre del curso">
+                        </label>
+                        <button onclick="loadReport('courses')">Filtrar</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="reportTable">
+                        <thead></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 Sistema de Gestión. Todos los derechos reservados (Ismael Calapiña).</p>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
